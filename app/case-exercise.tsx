@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { correctOption, financials, options } from "./case-data";
+import { caseQuestion, correctOption, options } from "./case-data";
+import { CaseExhibit } from "./case-exhibit";
 
 export function CaseExercise() {
   const [selected, setSelected] = useState<number | null>(null);
@@ -16,21 +17,13 @@ export function CaseExercise() {
       <div className="app__pane app__pane--list">
         <p className="t-label">Exhibit 01</p>
         <p className="app__title">Income statement</p>
-        <table className="financials">
-          <caption className="visually-hidden">Two years of fictional retailer financials</caption>
-          <thead><tr><th scope="col">USD</th><th scope="col">Year 1</th><th scope="col">Year 2</th></tr></thead>
-          <tbody>
-            {financials.map(({ label, prior, current }) => (
-              <tr key={label}><th scope="row">{label}</th><td>{prior}</td><td>{current}</td></tr>
-            ))}
-          </tbody>
-        </table>
+        <CaseExhibit />
       </div>
       <div className="app__pane app__pane--open">
         <p className="t-label">Retail profitability case</p>
         <div className="case-question">
           <fieldset>
-            <legend>What drove the drop in profit?</legend>
+            <legend>{caseQuestion}</legend>
             <div className="choices">
               {options.map(({ label }, index) => (
                 <label className="choice" key={label}>

@@ -1,3 +1,5 @@
+export const caseQuestion = "Why did profit fall?";
+
 export const financials = [
   { label: "Revenue", prior: "$24.0m", current: "$26.0m" },
   { label: "Cost of goods", prior: "$14.4m", current: "$15.6m" },

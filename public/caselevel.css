@@ -26,10 +26,11 @@
 
 .hero--triptych .ly-collage__set { display: grid; align-content: center; justify-items: center; }
 .ly-collage__set > div { width: min(100%, 530px); }
+.hero--triptych .hero__case-fact { margin-block-start: 12px; font-size: var(--t-body); }
 .case-preview .ss-stage .sc-window { overflow: hidden; background: #fff; }
 .case-preview .ss-stage .sc-detail { background: #171717; }
 
-.case-head p { align-self: center; }
+.case-head p { align-self: start; }
 
 .wrap > .case-frame {
   display: grid;

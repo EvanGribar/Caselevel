@@ -12,8 +12,8 @@ const navLinks = [
 
 const questions = [
   ["Who is Caselevel for?", "It’s designed for students preparing for consulting internships and entry-level roles, including people practicing their first case."],
-  ["What should I know before starting?", "The path starts with revenue, costs and profit. You’ll use basic arithmetic and read figures from a table."],
-  ["What feedback will I get?", "You get an explanation tied to the problem, so you can see what to change before your next attempt."],
+  ["What math does interview practice require?", "The path starts with revenue, costs and profit. You’ll use basic arithmetic and read figures from a table."],
+  ["How does interview practice feedback work?", "You get an explanation tied to the problem, so you can see what to change before your next attempt."],
 ];
 
 const oneScreen = { "--h": 1 } as CSSProperties;
@@ -48,11 +48,12 @@ export default function Home() {
             <div className="hero-text grid hero__grid">
               <div className="span-3">
                 <h1 id="hero-h" data-enter-whole="">Consulting interview practice</h1>
-                <p className="hero__lead">Short lessons, realistic cases, and feedback for your next attempt.</p>
+                <p className="hero__lead">Prepare for consulting internships with short lessons, business cases, and feedback on your answers.</p>
+                <p className="hero__lead hero__case-fact">In the retail case, operating profit falls from $4.0m to $2.6m.</p>
               </div>
               <div className="ly-collage span-6 start-4">
                 <div className="ly-collage__set is-on">
-                  <div id="product-preview" className="hero__window" role="img" aria-label="Caselevel combines lessons, practice problems, and feedback. Profitability is one skill path.">
+                  <div id="product-preview" className="hero__window" role="img" aria-label="Retail profitability case preview. The income statement shows operating profit falling from $4.0 million to $2.6 million. What drove the drop?">
                     <ProductPreview />
                   </div>
                 </div>
@@ -65,7 +66,7 @@ export default function Home() {
         <section className="section ground-surface" id="curriculum" style={oneScreen} aria-labelledby="curriculum-h">
           <div className="wrap">
             <div className="section-head">
-              <h2 id="curriculum-h">Case skills curriculum</h2>
+              <h2 id="curriculum-h">Consulting skills curriculum</h2>
             </div>
             <div className="grid curriculum-grid">
               <div className="span-5 curriculum-intro">
@@ -88,7 +89,7 @@ export default function Home() {
         <section className="section" id="case" style={oneScreen} aria-labelledby="case-h">
           <div className="wrap">
             <div className="grid grid--top section-head case-head">
-              <h2 className="span-5" id="case-h">Try the sample case</h2>
+              <h2 className="span-5" id="case-h">Retail profitability example</h2>
               <p className="span-7 start-6">Use a fictional retailer’s income statement to diagnose a profit decline and see how the feedback works.</p>
             </div>
             <div className="frame case-frame" data-visual="">

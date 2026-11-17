@@ -18,27 +18,22 @@
   }
 
   & .sc-main { padding: 20px 28px; }
-  & .sc-label, & .sc-count { color: #555; font: 500 11px/1.4 var(--font-text); }
-  & .sc-count { display: inline-block; min-width: 16px; font-variant-numeric: tabular-nums; }
+  & .sc-label { color: #555; font: 500 11px/1.4 var(--font-text); }
   & .sc-title { display: block; margin-top: 4px; font: 400 33px/1.1 var(--font-display); letter-spacing: -.035em; }
-  & .sc-list { margin-top: 12px; }
-  & .sc-row { border-bottom: 1px solid var(--ss-line); border-radius: 0; --ss-row-gap: 3px; --ss-row-line: 20px; }
-  & .sc-name { font-size: 14px; font-weight: 600; }
-  & .sc-question { color: #555; font-size: 12px; }
+  & .financials { margin-top: 12px; }
+  & .financials :is(th, td) { padding-block: 5px; }
 
   & .sc-detail {
     position: absolute;
     display: grid;
-    gap: 6px;
     right: var(--gutter);
     bottom: var(--gutter);
-    width: 192px;
+    width: 220px;
     background: #171717;
     box-shadow: 0 4px 12px -4px #00000038;
   }
 
-  & .sc-detail .sc-label { color: #e4e4e4; }
-  & .sc-detail-total { color: var(--case-gold); font: 400 26px/1 var(--font-display); letter-spacing: -.035em; }
+  & .sc-detail .sc-prompt { color: var(--case-gold); font: 400 22px/1.12 var(--font-display); letter-spacing: -.025em; }
 
   & [data-layout="compact"] {
     & .sc-compact {
@@ -48,15 +43,14 @@
       background: #fff;
       box-shadow: 0 6px 12px -8px #00000025;
     }
-    & .sc-main { padding: 6px 5px; }
+    & .sc-main { padding: 8px; }
     & .sc-title { font-size: 25px; }
-    & .sc-list { margin-top: 4px; }
-    & .sc-row { --ss-row-pad: 6px !important; }
-    & .sc-question { font-size: 11px; }
-    & .sc-compact-path {
+    & .sc-prompt {
       display: block;
-      padding-top: 11px;
-      font-size: 12px;
+      margin-top: 9px;
+      padding-top: 10px;
+      border-top: 1px solid var(--ss-line);
+      font-size: 13px;
       font-weight: 600;
     }
   }
