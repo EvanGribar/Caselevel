@@ -7,25 +7,25 @@ import type { ReactNode } from "react";
 const siteUrl = process.env.CASELEVEL_SITE_URL;
 const shareImage = siteUrl ? new URL("/share.jpg", siteUrl).href : "/share.jpg";
 
-export const viewport: Viewport = { themeColor: "#ffffff" };
+export const viewport: Viewport = { themeColor: "#f9f8f5" };
 
 export const metadata: Metadata = {
   title: "Caselevel | Consulting Interview Practice",
-  description: "Build consulting interview skills with short lessons, focused practice, realistic cases, and feedback on your reasoning.",
+  description: "Explore Caselevel’s Strategy Consulting and Operations Consulting learning tracks for consulting interview preparation.",
   applicationName: "Caselevel",
   ...(siteUrl ? { alternates: { canonical: siteUrl } } : {}),
   other: { "page-type": "software", "site-kind": "software" },
   openGraph: {
     type: "website",
     title: "Caselevel | Consulting Interview Practice",
-    description: "Learn a concept, apply it to a business problem, and review your reasoning before the interview.",
+    description: "Learn strategy and operations consulting through short lessons and business cases.",
   },
   icons: { icon: "/caselevel.svg" },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={GeistSans.variable + " " + GeistSerifRegular.variable} data-type="software" data-radius="soft" data-buttons="solid" data-motion="on" data-ground="sky" suppressHydrationWarning>
+    <html lang="en" className={GeistSans.variable + " " + GeistSerifRegular.variable} data-type="software" data-radius="soft" data-buttons="solid" data-motion="on" suppressHydrationWarning>
       <head>
         <meta property="og:image" content={shareImage} />
         <link rel="stylesheet" href="/assets/system.css" />

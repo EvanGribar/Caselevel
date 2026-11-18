@@ -1,119 +1,162 @@
-import type { CSSProperties } from "react";
-import { ArrowDown, Menu } from "lucide-react";
-import { CaseExercise } from "./case-exercise";
-import { ProductPreview } from "./case-preview/preview";
-import { ProfitBridge } from "./profit-bridge";
+import { ArrowDown, ArrowRight, ChevronDown, Menu, Plus } from "lucide-react";
+import { ProfitabilityTree } from "./case-preview/profitability-tree";
 
-const navLinks = [
-  { href: "#case", text: "Income statement" },
-  { href: "#curriculum", text: "Curriculum" },
-  { href: "#faq", text: "FAQ" },
-];
+const tracks = [
+  {
+    id: "strategy",
+    title: "Strategy Consulting",
+    summary: "Evaluate opportunities and decide where a business should compete.",
+    topics: [
+      ["Market sizing", "Estimate demand using clear, defensible assumptions."],
+      ["Market entry", "Weigh customer demand, competition, and the cost of entering."],
+      ["Growth strategy", "Compare where to invest and explain the trade-offs."],
+    ],
+  },
+  {
+    id: "operations",
+    title: "Operations Consulting",
+    summary: "Diagnose what is holding a business back and decide what to improve.",
+    topics: [
+      ["Profitability", "Use an income statement to trace changes in revenue and cost."],
+      ["Process improvement", "Find a bottleneck and identify which change would relieve it."],
+      ["Case recommendations", "Turn evidence into a concrete next step for the client."],
+    ],
+  },
+] as const;
 
 const questions = [
-  ["Who is Caselevel for?", "It’s designed for students preparing for consulting internships and entry-level roles, including people practicing their first case."],
-  ["What math does the retail case require?", "You’ll read an income statement and calculate the change in operating profit with subtraction."],
-  ["What feedback does Caselevel give?", "Every answer comes with an explanation. Work through all three questions to see an example recommendation for the retailer."],
+  ["Who is Caselevel for?", "Students preparing for consulting internships and entry-level interviews. You can start without prior case experience."],
+  ["What kinds of consulting does it cover?", "Strategy Consulting covers decisions like market entry and growth. Operations Consulting covers questions like profitability and process improvement."],
+  ["How does the learning work?", "Learn a concept in a short lesson, use it to solve a business problem, and review the reasoning behind the answer."],
 ];
 
-const oneScreen = { "--h": 1 } as CSSProperties;
-
-function Brand() {
-  return <a className="nav__logo" href="#top">Caselevel</a>;
-}
-
-function CaseLink() {
-  return <a className="btn btn--primary" href="#case">Try a case<ArrowDown size={16} aria-hidden="true" /></a>;
+function TracksLink() {
+  return <a className="btn btn--primary" href="#tracks">Explore tracks <ArrowDown size={16} aria-hidden="true" /></a>;
 }
 
 export default function Home() {
   return (
     <>
-      {/* Software. Centered hero, white and ink blue, Geist Serif and Geist Sans, centered nav, space between sections, type close, solid buttons, sky ground, Word Highlight. */}
-      <header className="nav nav--centre">
+      <header className="nav site-nav">
         <a className="skip-link" href="#main-content">Skip to content</a>
         <div className="wrap nav__bar">
-          <Brand />
-          <nav className="nav__links" aria-label="Main navigation">
-            {navLinks.map(({ href, text }) => <div className="nav__item" key={href}><a className="nav__link" href={href}>{text}</a></div>)}
+          <a className="nav__logo" href="#top">Caselevel</a>
+          <nav className="nav__links" id="main-navigation" aria-label="Main navigation">
+            <div className="nav__item">
+              <a className="nav__link" href="#tracks">Tracks<ChevronDown size={14} className="chev" aria-hidden="true" /></a>
+              <button className="nav__expand" type="button" aria-label="Show Tracks links" aria-expanded="false" aria-controls="track-menu"><ChevronDown aria-hidden="true" /></button>
+              <div className="nav__menu" id="track-menu">
+                <div className="wrap menu-col track-menu">
+                  {tracks.map(track => <a href={`#${track.id}`} key={track.id}>{track.title}<span>{track.summary}</span></a>)}
+                </div>
+              </div>
+            </div>
+            <div className="nav__item"><a className="nav__link" href="#curriculum">How it works</a></div>
+            <div className="nav__item"><a className="nav__link" href="#faq">FAQ</a></div>
           </nav>
-          <div className="nav__actions"><CaseLink /></div>
-          <button className="nav__toggle" type="button" aria-expanded="false" aria-label="Menu"><Menu size={20} aria-hidden="true" /></button>
+          <div className="nav__actions"><TracksLink /></div>
+          <button className="nav__toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Menu"><Menu size={20} aria-hidden="true" /></button>
         </div>
       </header>
 
       <main id="main-content" tabIndex={-1}>
-        <section id="top" className="hero hero--centred" data-enter="" aria-labelledby="hero-h">
+        <section id="top" className="hero caselevel-hero" data-enter="" aria-labelledby="hero-h">
           <div className="wrap">
             <div className="hero-text">
-              <div className="hero__c">
-                <h1 id="hero-h" data-enter-whole="">Consulting case practice</h1>
-                <p className="hero__lead">Preparing for a consulting internship? Diagnose a retailer’s profit decline and make a recommendation in three questions.</p>
-                <div className="btn-row hero__cta"><CaseLink /></div>
+              <div className="landing-split hero-intro">
+                <h1 id="hero-h" data-enter-whole="">Learn consulting by solving cases</h1>
+                <div className="hero-intro__copy">
+                  <p>Build strategy and operations consulting skills for your interview. Learn a concept in a short lesson, then apply it to a business case.</p>
+                  <TracksLink />
+                </div>
               </div>
-              <div className="hero__window">
-                <ProductPreview />
-              </div>
+              <ProfitabilityTree />
             </div>
           </div>
         </section>
 
-        <section className="section" id="case" style={oneScreen} aria-labelledby="case-h" tabIndex={-1}>
+        <section className="section landing-section" id="tracks" aria-labelledby="tracks-h">
           <div className="wrap">
-            <div className="grid grid--top section-head case-head">
-              <h2 className="span-5" id="case-h">Retail case income statement</h2>
-              <p className="span-7 start-6">A retailer is selling more and earning less. Use its income statement to find out why and decide what the client should investigate first.</p>
+            <div className="section-head centered-head">
+              <h2 id="tracks-h">Two consulting tracks</h2>
+              <p>Build the skills to answer the questions consultants face.</p>
             </div>
-            <div className="frame case-frame" data-visual="">
-              <CaseExercise />
+            <div className="track-grid">
+              {tracks.map(track => (
+                <a className={`track-card track-card--${track.id}`} href={`#${track.id}`} key={track.id}>
+                  <div className="track-card__intro">
+                    <h3>{track.title}</h3>
+                    <p>{track.summary}</p>
+                    <span>Explore {track.id} <ArrowRight size={16} aria-hidden="true" /></span>
+                  </div>
+                  <ul className="track-card__detail" aria-hidden="true">
+                    {track.topics.map(([topic]) => <li key={topic}>{topic}</li>)}
+                  </ul>
+                </a>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="section ground-surface" id="curriculum" style={oneScreen} aria-labelledby="curriculum-h" data-moment="word-highlight">
+        <section className="section landing-section lesson-section ground-surface" id="curriculum" aria-labelledby="lesson-h">
           <div className="wrap">
-            <div className="section-head grid grid--top curriculum-head">
-              <h2 className="span-5" id="curriculum-h">Consulting skills curriculum</h2>
-              <p className="span-7 start-6 mo-wh__text">Trace the <strong>change in profit</strong> by adding the revenue gain and subtracting each increase in costs.</p>
+            <div className="section-head centered-head">
+              <h2 id="lesson-h">From a short lesson to a full case</h2>
+              <p>Work through a concept on its own before using it to make a business recommendation.</p>
             </div>
-            <ProfitBridge />
-            <dl className="curriculum-topics">
-              <div><dt>Profitability</dt><dd>Find what changed in revenue and costs.</dd></div>
-              <div><dt>Case structuring</dt><dd>Break a problem into questions you can investigate.</dd></div>
-              <div><dt>Mental math</dt><dd>Calculate differences and margins.</dd></div>
-              <div><dt>Market sizing</dt><dd>Estimate demand from stated assumptions.</dd></div>
-            </dl>
+            <ol className="learning-flow">
+              <li><span>01</span><h3>Learn</h3><p>Build one skill at a time with a short explanation and worked example.</p></li>
+              <li><span>02</span><h3>Practice</h3><p>Apply the skill to a consulting problem with a brief and an exhibit.</p></li>
+              <li><span>03</span><h3>Review</h3><p>See where your reasoning held up and what to improve on the next case.</p></li>
+            </ol>
           </div>
         </section>
 
-        <section className="section" id="faq" style={oneScreen} aria-labelledby="questions-h">
+        <section className="section landing-section curriculum-section" aria-labelledby="curriculum-h">
           <div className="wrap">
-            <div className="section-head"><h2 id="questions-h">Caselevel FAQ</h2></div>
-            <div className="faq case-faq">
-              {questions.map(([question, answer]) => (
-                <article className="faq__item" key={question}>
-                  <h3>{question}</h3>
-                  <p>{answer}</p>
+            <h2 id="curriculum-h">What you’ll learn</h2>
+            <div className="track-grid">
+              {tracks.map(track => (
+                <article className="curriculum-track" id={track.id} key={track.id} aria-labelledby={`${track.id}-h`} tabIndex={-1}>
+                  <h3 id={`${track.id}-h`}>{track.title}</h3>
+                  {track.topics.map(([topic, description], index) => (
+                    <details key={topic} name={`${track.id}-topics`} open={index === 0}>
+                      <summary>{topic}<Plus size={18} aria-hidden="true" /></summary>
+                      <p>{description}</p>
+                    </details>
+                  ))}
                 </article>
               ))}
             </div>
           </div>
         </section>
+
+        <section className="section landing-section landing-faq ground-inverse" id="faq" aria-labelledby="faq-h">
+          <div className="wrap">
+            <div className="landing-split faq-split">
+              <h2 id="faq-h">Frequently asked questions</h2>
+              <div className="question-list">
+                {questions.map(([question, answer], index) => (
+                  <details key={question} name="caselevel-faq" open={index === 0}>
+                    <summary>{question}<Plus size={19} aria-hidden="true" /></summary>
+                    <p>{answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="footer footer--dark ground-inverse case-footer" aria-labelledby="close-h">
+      <footer className="footer footer--dark ground-inverse closing case-footer">
         <div className="wrap">
-          <div className="case-footer__cta">
-            <h2 id="close-h">Your first consulting case</h2>
-            <CaseLink />
-          </div>
+          <div className="case-footer__cta"><h2>Prepare for your consulting interview</h2><TracksLink /></div>
           <div className="case-footer__navigation">
-            <Brand />
+            <div><a className="nav__logo" href="#top">Caselevel</a><small>© 2026 Caselevel</small></div>
             <nav aria-label="Footer navigation">
-              {navLinks.map(({ href, text }) => <a key={href} href={href}>{text}</a>)}
+              <a href="#strategy">Strategy Consulting</a><a href="#operations">Operations Consulting</a><a href="#curriculum">How it works</a><a href="#faq">FAQ</a>
             </nav>
           </div>
-          <div className="footer__legal"><span>© 2026 Caselevel</span></div>
         </div>
       </footer>
     </>
