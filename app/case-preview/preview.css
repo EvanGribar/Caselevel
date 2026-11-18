@@ -1,0 +1,96 @@
+.case-preview {
+  & .ss-stage {
+    --ss-font: var(--font-text);
+    --ss-surface: var(--p-bg);
+    --ss-text: var(--p-muted);
+    --ss-text-strong: var(--p-ink);
+    --ss-line: var(--line);
+    overflow: hidden;
+    background: transparent;
+  }
+
+  & .snapshot-window {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    width: 876px;
+    translate: -50% 0;
+    box-shadow: var(--ss-shadow-hero);
+  }
+
+  & .ss-window__bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  & .ss-window__title {
+    grid-column: 2;
+    margin: 0;
+  }
+
+  & .snapshot-body {
+    display: grid;
+    grid-template-columns: 302px 338px;
+    justify-content: center;
+    gap: 64px;
+    padding: 20px 24px 60px;
+    background: var(--ss-surface);
+  }
+
+  & .snapshot-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--ss-text-strong);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  & .snapshot-plot {
+    border-bottom: 1px solid var(--ss-line);
+    background: repeating-linear-gradient(
+      to top, transparent 0 calc(25% - 1px), var(--ss-line) calc(25% - 1px) 25%
+    );
+  }
+
+  & .ss-chart__bar:first-child {
+    fill: color-mix(in srgb, var(--ss-accent) 24%, var(--ss-surface));
+  }
+
+  & .snapshot-axis {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12.5%;
+    margin: 8px 0 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  & .snapshot-axis > div { text-align: center; }
+  & .snapshot-axis dt {
+    color: var(--ss-text);
+    white-space: nowrap;
+  }
+
+  & .snapshot-axis dd {
+    margin: 2px 0 0;
+    color: var(--ss-text-strong);
+    font-size: 16px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  & .ss-stage[data-layout="compact"] .snapshot-window {
+    top: 18px;
+    width: 322px;
+  }
+
+  & .ss-stage[data-layout="compact"] .snapshot-body {
+    grid-template-columns: repeat(2, 140px);
+    gap: 16px;
+    padding: 16px 12px 54px;
+  }
+
+  & .ss-stage[data-layout="compact"] .snapshot-axis { font-size: 11px; }
+  & .ss-stage[data-layout="compact"] .snapshot-axis dd { font-size: 14px; }
+}
