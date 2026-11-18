@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, ArrowUp, ChartColumn, ChevronDown, ClipboardCheck, Crosshair, Menu, Plus, Ruler, Signpost, TrendingUp, Workflow } from "lucide-react";
+import { ArrowDown, ArrowRight, ChartColumn, ChevronDown, ClipboardCheck, Crosshair, Menu, Plus, Ruler, Signpost, TrendingUp, Workflow } from "lucide-react";
 import { ProfitabilityTree } from "./case-preview/profitability-tree";
 
 const tracks = [
@@ -36,13 +36,13 @@ const trackIcons = {
 };
 
 function TracksLink() {
-  return <a className="btn btn--primary" href="#tracks">Explore tracks <ArrowDown size={16} aria-hidden="true" /></a>;
+  return <a className="btn btn--primary" href="#tracks">Explore tracks <ArrowRight size={16} aria-hidden="true" /></a>;
 }
 
 export default function Home() {
   return (
     <>
-      <header className="nav site-nav">
+      <header className="nav nav--centre site-nav">
         <a className="skip-link" href="#main-content">Skip to content</a>
         <div className="wrap nav__bar">
           <a className="nav__logo" href="#top">Caselevel</a>
@@ -65,43 +65,41 @@ export default function Home() {
       </header>
 
       <main id="main-content" tabIndex={-1}>
-        <section id="top" className="hero caselevel-hero" data-enter="" aria-labelledby="hero-h">
-          <div className="wrap">
-            <div className="hero-text">
-              <div className="landing-split hero-intro">
-                <h1 id="hero-h" data-enter-whole="">Learn consulting by solving cases</h1>
-                <div className="hero-intro__copy">
-                  <p>Build strategy and operations consulting skills for your interview. Learn a concept in a short lesson, then apply it to a business case.</p>
-                  <TracksLink />
-                </div>
+        <section id="top" className="caselevel-hero" aria-labelledby="hero-h">
+          <div className="wrap hero-grid">
+            <div className="hero-intro">
+              <h1 id="hero-h">Prepare for consulting interviews</h1>
+              <p>Learn strategy and operations in short lessons. Then solve a business case and get feedback on your reasoning.</p>
+              <div className="hero-actions">
+                <TracksLink />
+                <a className="text-link" href="#curriculum">How it works <ArrowDown size={16} aria-hidden="true" /></a>
               </div>
-              <ProfitabilityTree />
             </div>
+            <ProfitabilityTree />
           </div>
         </section>
 
         <section className="section landing-section" id="tracks" aria-labelledby="tracks-h" tabIndex={-1}>
           <div className="wrap">
-            <div className="section-head centered-head" data-landing-reveal="0">
+            <div className="section-head landing-head">
               <h2 id="tracks-h">Two consulting tracks</h2>
-              <p>Build the skills to answer the questions consultants face.</p>
             </div>
             <div className="track-grid">
-              {tracks.map((track, index) => (
-                <a className={`track-card track-card--${track.id}`} href={`#${track.id}`} key={track.id} data-landing-reveal={index * 105}>
+              {tracks.map(track => (
+                <a className={`track-card track-card--${track.id}`} href={`#${track.id}`} key={track.id}>
                   <div className="track-card__intro">
                     <h3>{track.title}</h3>
                     <p>{track.summary}</p>
                     <span>Explore {track.id} <ArrowRight size={16} aria-hidden="true" /></span>
                   </div>
                   <div className="track-card__detail" data-track-diagram aria-hidden="true">
-                    {track.id === "strategy" && <span className="track-card__origin"><Crosshair size={23} /></span>}
+                    {track.id === "strategy" && <span className="track-card__origin"><Crosshair size={16} /></span>}
                     <ul className="track-card__nodes">
                       {track.topics.map(([topic], index) => {
                         const Icon = trackIcons[track.id][index];
                         return (
                           <li key={topic}>
-                            <span className="track-card__node"><Icon size={18} /><span>{topic}</span></span>
+                            <span className="track-card__node"><Icon size={16} /><span>{topic}</span></span>
                           </li>
                         );
                       })}
@@ -115,28 +113,27 @@ export default function Home() {
 
         <section className="section landing-section lesson-section ground-surface" id="curriculum" aria-labelledby="lesson-h">
           <div className="wrap">
-            <div className="section-head centered-head" data-landing-reveal="0">
+            <div className="section-head landing-head">
               <h2 id="lesson-h">From a short lesson to a full case</h2>
-              <p>Work through a concept on its own before using it to make a business recommendation.</p>
             </div>
             <ol className="learning-flow">
-              <li data-landing-reveal="0"><span>01</span><h3>Learn</h3><p>Build one skill at a time with a short explanation and worked example.</p></li>
-              <li data-landing-reveal="70"><span>02</span><h3>Practice</h3><p>Apply the skill to a consulting problem with a brief and an exhibit.</p></li>
-              <li data-landing-reveal="120"><span>03</span><h3>Review</h3><p>See where your reasoning held up and what to improve on the next case.</p></li>
+              <li><h3>Learn</h3><p>Study one concept through a short explanation and a worked example.</p></li>
+              <li><h3>Practice</h3><p>Use a client brief and an exhibit to make a recommendation.</p></li>
+              <li><h3>Review</h3><p>Review the reasoning behind the answer before your next case.</p></li>
             </ol>
           </div>
         </section>
 
         <section className="section landing-section curriculum-section" aria-labelledby="curriculum-h">
           <div className="wrap">
-            <h2 id="curriculum-h" data-landing-reveal="0">What you’ll learn</h2>
+            <h2 id="curriculum-h">What you’ll learn</h2>
             <div className="track-grid">
-              {tracks.map((track, index) => (
-                <article className="curriculum-track" id={track.id} key={track.id} aria-labelledby={`${track.id}-h`} tabIndex={-1} data-landing-reveal={index * 90}>
+              {tracks.map(track => (
+                <article className="curriculum-track" id={track.id} key={track.id} aria-labelledby={`${track.id}-h`} tabIndex={-1}>
                   <h3 id={`${track.id}-h`}>{track.title}</h3>
                   {track.topics.map(([topic, description], index) => (
                     <details key={topic} name={`${track.id}-topics`} open={index === 0}>
-                      <summary>{topic}<Plus size={18} aria-hidden="true" /></summary>
+                      <summary>{topic}<Plus size={16} aria-hidden="true" /></summary>
                       <p>{description}</p>
                     </details>
                   ))}
@@ -146,14 +143,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section landing-section landing-faq ground-inverse" id="faq" aria-labelledby="faq-h">
+        <section className="section landing-section landing-faq ground-surface" id="faq" aria-labelledby="faq-h">
           <div className="wrap">
             <div className="landing-split faq-split">
-              <h2 id="faq-h" data-landing-reveal="0">Frequently asked questions</h2>
-              <div className="question-list" data-landing-reveal="85">
+              <h2 id="faq-h">Frequently asked questions</h2>
+              <div className="question-list">
                 {questions.map(([question, answer], index) => (
                   <details key={question} name="caselevel-faq" open={index === 0}>
-                    <summary>{question}<Plus size={19} aria-hidden="true" /></summary>
+                    <summary>{question}<Plus size={16} aria-hidden="true" /></summary>
                     <p>{answer}</p>
                   </details>
                 ))}
@@ -165,19 +162,19 @@ export default function Home() {
 
       <footer className="footer ground-inverse case-footer">
         <div className="wrap">
-          <div className="case-footer__cta" data-landing-reveal="0">
+          <div className="case-footer__cta">
             <h2>Choose your consulting track</h2>
-            <a className="btn btn--primary" href="#tracks">Back to tracks <ArrowUp size={16} aria-hidden="true" /></a>
+            <TracksLink />
           </div>
           <div className="case-footer__navigation">
-            <a className="nav__logo" href="#top" aria-label="Caselevel, back to top" data-landing-reveal="0">Caselevel</a>
+            <a className="nav__logo" href="#top" aria-label="Caselevel, back to top">Caselevel</a>
             <nav aria-label="Footer navigation">
-              <div data-landing-reveal="70">
+              <div>
                 <h3>Tracks</h3>
                 <a href="#strategy">Strategy Consulting</a>
                 <a href="#operations">Operations Consulting</a>
               </div>
-              <div data-landing-reveal="120">
+              <div>
                 <h3>Caselevel</h3>
                 <a href="#curriculum">How it works</a>
                 <a href="#faq">FAQ</a>
