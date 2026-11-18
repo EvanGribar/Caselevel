@@ -1,4 +1,4 @@
-import { financials } from "./case-data";
+import { financials, formatMillions } from "./case-data";
 
 export function CaseExhibit() {
   return (
@@ -9,7 +9,7 @@ export function CaseExhibit() {
       </thead>
       <tbody>
         {financials.map(({ label, prior, current }) => (
-          <tr key={label}><th scope="row">{label}</th><td>{prior}</td><td>{current}</td></tr>
+          <tr key={label}><th scope="row">{label}</th><td>{formatMillions(prior)}</td><td>{formatMillions(current)}</td></tr>
         ))}
       </tbody>
     </table>

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={GeistSans.variable + " " + GeistSerifRegular.variable} data-type="software" data-radius="round" data-buttons="pill" data-motion="on" data-ground="sand" suppressHydrationWarning>
+    <html lang="en" className={GeistSans.variable + " " + GeistSerifRegular.variable} data-type="software" data-radius="soft" data-buttons="solid" data-motion="on" data-ground="sky" suppressHydrationWarning>
       <head>
         <meta property="og:image" content={shareImage} />
         <link rel="stylesheet" href="/assets/system.css" />
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="stylesheet" href="/kit/case-preview.css" />
         <link rel="modulepreload" href="/assets/moments/moments.js" />
         <link rel="modulepreload" href="/assets/moments/lib.js" />
-        <link rel="modulepreload" href="/assets/moments/liquid-type/moment.js" />
+        <link rel="modulepreload" href="/assets/moments/word-highlight/moment.js" />
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('m-enter','mo-js');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700);setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)" }} />
         <script src="/assets/backgrounds/backgrounds.js" />
       </head>
