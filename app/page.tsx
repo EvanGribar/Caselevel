@@ -22,8 +22,8 @@ function Brand() {
   return <a className="nav__logo" href="#top">Caselevel</a>;
 }
 
-function CaseLink({ large = false }: { large?: boolean }) {
-  return <a className={`btn btn--primary${large ? " btn--xl btn--wide" : ""}`} href="#case">Try a case<ArrowDown size={16} aria-hidden="true" /></a>;
+function CaseLink() {
+  return <a className="btn btn--primary" href="#case">Try a case<ArrowDown size={16} aria-hidden="true" /></a>;
 }
 
 export default function Home() {
@@ -51,7 +51,7 @@ export default function Home() {
                 <p className="hero__lead">Preparing for a consulting internship? Diagnose a retailer’s profit decline and make a recommendation in three questions.</p>
                 <div className="btn-row hero__cta"><CaseLink /></div>
               </div>
-              <div id="product-preview" className="hero__window" role="img" aria-label="Retail profitability case preview. The income statement shows operating profit falling from $4.0 million to $2.6 million.">
+              <div className="hero__window">
                 <ProductPreview />
               </div>
             </div>
@@ -101,21 +101,19 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer closing footer--columns ground-surface" aria-labelledby="close-h">
+      <footer className="footer footer--dark ground-inverse case-footer" aria-labelledby="close-h">
         <div className="wrap">
-          <div className="closing__cta close--type">
+          <div className="case-footer__cta">
             <h2 id="close-h">Your first consulting case</h2>
-            <CaseLink large />
+            <CaseLink />
           </div>
-          <div className="closing__links">
-            <div className="footer-navigation">
-              <Brand />
-              <nav aria-label="Footer navigation">
-                {navLinks.map(({ href, text }) => <a key={href} href={href}>{text}</a>)}
-              </nav>
-            </div>
-            <div className="footer__legal"><span>© 2026 Caselevel</span></div>
+          <div className="case-footer__navigation">
+            <Brand />
+            <nav aria-label="Footer navigation">
+              {navLinks.map(({ href, text }) => <a key={href} href={href}>{text}</a>)}
+            </nav>
           </div>
+          <div className="footer__legal"><span>© 2026 Caselevel</span></div>
         </div>
       </footer>
     </>

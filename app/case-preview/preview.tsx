@@ -1,58 +1,50 @@
 "use client";
 
+import { financials, formatMillions } from "../case-data";
+import { Chart } from "./kit/chart";
 import { Stage } from "./kit/stage";
 import { Text, Window } from "./kit/window";
-import { Card } from "./kit/parts/Card";
-import { Row } from "./kit/parts/Row";
-import { caseSteps } from "../case-data";
-import { CaseExhibit } from "../case-exhibit";
 import "./preview.css";
 
-const opening = caseSteps[0];
+const measures = [financials[0], financials[3]];
+const chartWidths = {
+  wide: [302, 338],
+  compact: [140, 140],
+};
 
 export function ProductPreview() {
   return (
     <Stage
-      width={860}
-      height={375}
-      compact={{ below: 690, width: 342, height: 372 }}
+      width={900}
+      height={292}
+      compact={{ below: 700, width: 358, height: 280 }}
       className="case-preview"
       accent="#244bc5"
       fidelity="realistic"
     >
-      {(_, __, layout) => {
-        const exhibit = (
-          <div className="sc-exhibit">
-            <Text className="sc-title">Income statement</Text>
-            <CaseExhibit />
-          </div>
-        );
-
-        return layout === "compact" ? (
-          <Card className="sc-compact" pad="large" gap={16}>
-            {exhibit}
-            <div className="sc-prompt">
-              <Text className="sc-phase">Diagnose · 1 of 3</Text>
-              <Text className="sc-title">{opening.question}</Text>
-            </div>
-          </Card>
-        ) : (
-          <Window title="Retail profitability case" lights="grey" className="sc-window">
-            <div className="sc-layout">
-              {exhibit}
-              <div className="sc-question">
-                <Text className="sc-phase">Diagnose · 1 of 3</Text>
-                <Text className="sc-title">{opening.question}</Text>
-                <div className="sc-options">
-                  {opening.options.map(({ label }) => (
-                    <Row key={label} pad={8} title={label} />
-                  ))}
+      {(_, __, layout) => (
+        <Window title="Retail performance" lights="grey" className="snapshot-window">
+          <div className="snapshot-body">
+            {measures.map(({ label, prior, current }, index) => (
+              <div className="snapshot-measure" key={label}>
+                <Text className="snapshot-label">{label}</Text>
+                <div className="snapshot-plot">
+                  <Chart
+                    kind="bars"
+                    data={[prior, current]}
+                    width={chartWidths[layout][index]}
+                    height={layout === "compact" ? 104 : 124}
+                  />
                 </div>
+                <dl className="snapshot-axis">
+                  <div><dt>Prior year</dt><dd>{formatMillions(prior)}</dd></div>
+                  <div><dt>Current year</dt><dd>{formatMillions(current)}</dd></div>
+                </dl>
               </div>
-            </div>
-          </Window>
-        );
-      }}
+            ))}
+          </div>
+        </Window>
+      )}
     </Stage>
   );
 }

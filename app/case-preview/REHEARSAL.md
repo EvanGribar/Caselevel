@@ -1,7 +1,7 @@
-# Landing page visual rehearsal
+# Retail performance preview rehearsal
 
-The hero uses the Stageshow Window, Row, and Card parts. The desktop scene shows the income statement beside the first question. The phone scene stacks the exhibit and question in a compact card. Both keep the full preview inside the hero and share the exhibit and question with the playable case.
+The Stageshow `chart-scrub` example supplied the centered window, plot and year labels. The Caselevel still uses paired bars for revenue and operating profit from the retail case. The compact layout uses shorter plots and keeps both comparisons visible. The detailed income statement and questions appear in the exercise below.
 
-The curriculum uses a static waterfall chart drawn from the case exhibit. Its starting and ending totals reconcile with the three intervening revenue and cost changes. The nearby Word Highlight effect respects reduced-motion preferences.
+Stageshow reported `rehearsal passed` for still captures at 1440 and 390 px and for the reduced-motion capture at 390 px. The visual review caught wrapped year labels clipping both current-year figures at 390 px. The final capture shows both years on single lines with room below the values. The operating profit plot gets more room in the desktop layout.
 
-The Stageshow still-frame gate passed at 1440 and 390 px. Browser checks covered the complete case, chart values, and hero framing at six widths from 320 to 1440 px.
+Headless Chrome checked chart framing and footer layout at 320, 390, 768, 1024 and 1440 px. At 390 and 1440 px, the three footer links and case button reached their sections, and the exercise reached its recommendation after all three questions. The preview is a still. Physical devices were outside this check.
