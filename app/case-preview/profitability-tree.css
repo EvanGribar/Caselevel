@@ -53,10 +53,22 @@
   left: 370px;
   width: 320px;
   height: 58px;
-  font: 400 30px/1 var(--font-display);
   background: #e6dac3;
 }
-.tree-node--revenue, .tree-node--cost { top: 180px; width: 330px; height: 106px; }
+.tree-node--revenue, .tree-node--cost {
+  top: 180px;
+  width: 330px;
+  height: 106px;
+  transition: transform 180ms var(--ease), opacity 180ms var(--ease);
+}
+.ss-stage:not([data-still]) .lesson-showcase__tree:has(.tree-branch--revenue:not([data-arrived])) .tree-node--revenue,
+.ss-stage:not([data-still]) .lesson-showcase__tree:has(.tree-branch--cost:not([data-arrived])) .tree-node--cost {
+  transform: translateY(4px);
+  opacity: .82;
+}
+.lesson-showcase__tree .ss-connector[data-show] .ss-connector__line {
+  transition-duration: 480ms, 120ms;
+}
 .tree-node--revenue { left: 101px; }
 .tree-node--cost { left: 629px; }
 .tree-node strong { font: 400 27px/1 var(--font-display); }
@@ -67,7 +79,6 @@
   left: 72px;
   width: 184px;
   height: 43px;
-  font-size: 20px;
 }
 .lesson-showcase .ss-stage[data-layout="compact"] :is(.tree-node--revenue, .tree-node--cost) { top: 120px; width: 142px; height: 74px; }
 .lesson-showcase .ss-stage[data-layout="compact"] .tree-node--revenue { left: 11px; }
@@ -76,4 +87,8 @@
 .lesson-showcase .ss-stage[data-layout="compact"] .tree-node span { font-size: 12px; }
 @container (width < 660px) {
   .lesson-showcase__fallback { min-height: clamp(184px, 65cqw, 432px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tree-node { transition: none; transform: none; opacity: 1; }
+  .lesson-showcase__tree .ss-connector[data-show] .ss-connector__line { transition: none; }
 }

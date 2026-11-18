@@ -12,13 +12,12 @@ const opening: Scene = { revealed: 0 };
 const poster: Scene = { revealed: 2 };
 
 async function drawTree(act: Act<Scene>) {
-  await act.wait(360);
+  await act.wait(240);
   act.mark("revenue");
   await act.set({ revealed: 1 });
-  await act.wait(420);
+  await act.wait(180);
   act.mark("costs");
   await act.set(poster);
-  await act.wait(750);
 }
 
 export function ProfitabilityTree() {
@@ -26,7 +25,7 @@ export function ProfitabilityTree() {
   useEffect(() => setReady(true), []);
 
   return (
-    <figure className="lesson-showcase" aria-label="Profitability issue tree" data-ready={ready}>
+    <figure className="lesson-showcase" aria-label="Operating profit breakdown" data-ready={ready}>
       <div className="lesson-showcase__fallback">
         <p>Operating profit</p>
         <div><p><strong>Revenue</strong><span>Price × volume</span></p><p><strong>Costs</strong><span>Fixed + variable costs</span></p></div>
@@ -45,12 +44,12 @@ export function ProfitabilityTree() {
 
             return (
               <div className="lesson-showcase__tree">
-                <div className="tree-node tree-node--root">Operating profit</div>
+                <div className="tree-node tree-node--root"><strong>Operating profit</strong></div>
                 <div className="tree-node tree-node--revenue"><strong>Revenue</strong><span>Price × volume</span></div>
                 <div className="tree-node tree-node--cost"><strong>Costs</strong><span>Fixed + variable costs</span></div>
                 <Connector route="straight" dots="none" show={revealed > 0} from={{ x: center, y: compact ? 65 : 98 }} to={{ x: center, y: junction }} />
-                <Connector dots="none" show={revealed > 0} from={{ x: center, y: junction }} to={{ x: left, y: edge }} />
-                <Connector dots="none" show={revealed > 1} from={{ x: center, y: junction }} to={{ x: right, y: edge }} />
+                <Connector className="tree-branch--revenue" dots="none" show={revealed > 0} from={{ x: center, y: junction }} to={{ x: left, y: edge }} />
+                <Connector className="tree-branch--cost" dots="none" show={revealed > 1} from={{ x: center, y: junction }} to={{ x: right, y: edge }} />
               </div>
             );
           }}
